@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+{% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+<html>
+<head>
+  <title>Quick MRI</title>
+  <style>
+
+    @font-face {
+      font-family: 'Quicksand';
+      src: url('{% static 'fonts/Quicksand-Regular.ttf' %}') format('truetype');
+    }
+
+    @font-face {
+      font-family: 'Neuton';
+      src: url('{% static 'fonts/Neuton-Regular.otf' %}') format('truetype');
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-image: linear-gradient(120deg, #22315e 22% 0%, 67%, #7dbed4 100%);
+      background-size: cover;
+      background-repeat: no-repeat;
+      font-family: 'Neuton', sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    h1 {
+      font-family: 'Quicksand', sans-serif;
+      color: white;
+      font-size:60px;
+    }
+
+    h3 {
+      font-family: 'Quicksand', sans-serif;
+      color: white;
+      font-size:24px;
+      font-style: italic;
+      padding-top: 10px
+    }
+
+    .navbar-nav .nav-link {
+      color: white;
+      font-family: 'Neuton', sans-serif;
+      margin-right: 20px;
+      margin-left: 20px;
+      font-size:19px;
+      transition: color 0.3s;
+      font-weight: bold;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: #7f7f7f;
+      font-weight: bold;
+    }
+
+    .center {
+      margin-top: auto;
+      margin-bottom: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .btn-round {
+     background-color: #7dbed4;
+      color: white;
+      border-radius: 50px;
+      font-weight: bold;
+      margin-right: 30px
+    }
+
+    .btn:hover {
+      background-color: #6565c7;
+      color: white;
+      font-weight: bold;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+    }
+
+    .card {
+      background-color: rgba(255, 255, 255, 0.05);
+      border-radius: 15%;
+      padding: 3%;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="">
+        <img src="{% static 'identify/logo3.png' %}" alt="Bootstrap" width="70" height="50">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link active" aria-current="page" href="">Home</a>
+          <a class="nav-link" href="about">About</a>
+          <a class="nav-link" href="diagnose">Diagnose</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="center">
+    <div class="card">
+      <h1>Quick MRI</h1>
+
+      <h3>ACL Diagnosis On Your Time</h3>
+
+      <div style="margin-top:20px; margin-left:30px">
+        <a class="btn btn-round" href="/about">Learn More</a>
+        <a class="btn btn-round" href="/diagnose">Try It Yourself</a>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

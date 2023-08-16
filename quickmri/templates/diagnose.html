@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+{% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+<html>
+<head>
+  <title>Quick MRI</title>
+   <style>
+
+    @font-face {
+      font-family: 'Quicksand';
+      src: url('{% static 'fonts/Quicksand-Regular.ttf' %}') format('truetype');
+    }
+
+    @font-face {
+      font-family: 'Neuton';
+      src: url('{% static 'fonts/Neuton-Regular.otf' %}') format('truetype');
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-image: linear-gradient(120deg, #22315e 22% 0%, 67%, #7dbed4 100%);
+      background-size: cover;
+      background-repeat: no-repeat;
+      font-family: 'Neuton', sans-serif;
+    }
+
+    h1 {
+      font-family: 'Quicksand', sans-serif;
+      color: white;
+      font-size:30px;
+    }
+
+    h3 {
+      font-family: 'Quicksand', sans-serif;
+      color: white;
+      font-size:12px;
+      font-style: italic;
+    }
+
+    h2 {
+      font-family: 'Quicksand', sans-serif;
+      color: white;
+      font-size:18px;
+    }
+
+    .navbar-nav .nav-link {
+      color: white;
+      font-family: 'Neuton', sans-serif;
+      margin-right: 20px;
+      margin-left: 20px;
+      font-size:19px;
+      transition: color 0.3s;
+      font-weight: bold;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: #7f7f7f;
+      font-weight: bold;
+    }
+
+    .btn-round {
+      background-color: #7dbed4;
+      color: white;
+      border-radius: 50px;
+      font-weight: bold;
+      margin-right: 30px
+    }
+
+    .btn:hover {
+      background-color: #6565c7;
+      color: white;
+      font-weight: bold;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+    }
+
+    .form-container {
+      margin-top: 10px;
+    }
+
+    .form-label {
+      color: white;
+      font-family: 'Neuton', sans-serif;
+      font-size: 18px;
+    }
+
+    .form-control {
+      border-radius: 10px;
+    }
+
+    .card {
+      background-color: rgba(255, 255, 255, 0.05);
+      border-radius: 15%;
+      padding: 10px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    input[type="file"]::file-selector-button {
+      background-color: #7dbed4;
+      border: #7dbed4;
+      color: white;
+      font-weight: bold;
+      margin-right: 30px
+    }
+
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">
+        <img src="{% static 'identify/logo3.png' %}" alt="Bootstrap" width="70" height="50">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link active" aria-current="page" href="/">Home</a>
+          <a class="nav-link" href="about">About</a>
+          <a class="nav-link" href="diagnose">Diagnose</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="d-flex flex-column mx-auto" style="padding-left:3%; padding-right:3%">
+
+    <div class="d-flex" style="padding-top:30px">
+      <h1>Input Image To Receive A Diagnosis</h1>
+    </div>
+
+    <div class="d-flex" style="">
+      <h3>Note: This is not a substitute for a medical professional</h3>
+    </div>
+
+    <div class="form-container">
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="mri_image" class="form-label">Select an Image</label>
+          <input type="file" class="form-control" id="mri_image" name="mri_image" accept="image/*" required>
+        </div>
+        <button type="submit" class="btn btn-round">Get Diagnosis</button>
+      </form>
+    </div>
+
+    {% if diagnosis == 0.0 %}
+    <div class="card" style="width:30%">
+      <h2>No ACL Tear Detected</h2>
+      <div>
+        <img src="{% static 'identify/image.jpg' %}" alt="Uploaded MRI Image" width="256" height="256">
+      </div>
+    </div>
+    {% elif diagnosis == 1.0 %}
+    <div class="card" style="width:30%">
+      <h2>Potential ACL Tear Detected</h2>
+      <div>
+        <img src="{% static 'identify/image.jpg' %}" alt="Uploaded MRI Image" width="256" height="256">
+      </div>
+    </div>
+    {% endif %}
+
+  </div>
+
+</body>
+</html>

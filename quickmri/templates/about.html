@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+{% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+<html>
+<head>
+  <title>Quick MRI</title>
+  <style>
+
+    @font-face {
+      font-family: 'Quicksand';
+      src: url('{% static 'fonts/Quicksand-Regular.ttf' %}') format('truetype');
+    }
+
+    @font-face {
+      font-family: 'Neuton';
+      src: url('{% static 'fonts/Neuton-Regular.otf' %}') format('truetype');
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      padding: 0;
+      margin: 0;
+      font-family: 'Neuton', sans-serif;
+    }
+
+    .gradient-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh; /* Adjust the height as needed */
+      z-index: -1;
+      background: linear-gradient(120deg, #22315e 22%, #7dbed4 67%, #7dbed4 100%);
+    }
+
+    .content-container {
+      padding-bottom: 10vh;
+    }
+
+    h1 {
+      font-family: 'Quicksand', sans-serif;
+      color: white;
+      font-size:50px;
+    }
+
+    bodytext {
+      font-family: 'Neuton', sans-serif;
+      color: white;
+      font-size:16px;
+    }
+
+    .navbar-nav .nav-link {
+      color: white;
+      font-family: 'Neuton', sans-serif;
+      margin-right: 20px;
+      margin-left: 20px;
+      font-size:19px;
+      transition: color 0.3s;
+      font-weight: bold;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: #7f7f7f;
+      font-weight: bold;
+    }
+
+
+  </style>
+</head>
+
+<body>
+
+<div class="gradient-background"></div>
+
+<div class="content-container">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="{% static 'identify/logo3.png' %}" alt="Bootstrap" width="70" height="50">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    <a class="nav-link" href="about">About</a>
+                    <a class="nav-link" href="diagnose">Diagnose</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="d-flex" style="padding-top:10px; padding-left:20px">
+        <h1>How It Works</h1>
+    </div>
+
+    <div class="d-flex flex-row">
+        <div class="d-flex" style="padding-top:30px; padding-left:20px">
+            <bodytext>
+                Quick MRI uses a convolutional neural network (CNN) to classify sagittal knee MRIs as either
+                torn or healthy. CNNs are specialized deep learning models that are designed for image classification
+                tasks. They utilize convolutional layers to learn spatial hierarchies of features from training images
+                to determine common patterns, features, and shapes in these images. Through the use of learned filters,
+                CNNS are able to highly effectively classify images. Quick MRI works to find common features in torn and
+                healthy images to be able to quickly diagnose images.
+            </bodytext>
+        </div>
+        <div class="d-flex" style="margin-right:20px; padding-left:20px">
+            <img src="{% static 'identify/cnn.webp' %}" alt="Bootstrap" width="450" height="auto">
+        </div>
+    </div>
+
+    <div class="d-flex" style="padding-top:40px; padding-left:20px; margin-right:20px">
+        <bodytext>
+            The network used was trained with over 1100 images from the MRNet dataset from the Stanford ML
+            Group. The images were originally given in image stacks; however the model needs only a single
+            two-dimensional image. For each stack an appropriate representative image needed to be chosen for
+            training. Below is a sample of an example image stack and the appropriate image selected from it in the
+            middle. The images are drastically different and it is important to ensure that the ACL is appropriately
+            framed in the image.
+        </bodytext>
+    </div>
+
+    <div class="d-flex flex-row" style="padding-top:50px">
+        <div class="d-flex" style="padding-left:40px; padding-right:20px">
+            <img src="{% static 'identify/7.png' %}" alt="Bootstrap" width="200" height="auto">
+        </div>
+        <div class="d-flex" style="padding-left:20px; padding-right:20px">
+            <img src="{% static 'identify/15.png' %}" alt="Bootstrap" width="200" height="auto">
+        </div>
+        <div class="d-flex" style="padding-left:20px; padding-right:20px">
+            <img src="{% static 'identify/21.png' %}" alt="Bootstrap" width="200" height="auto">
+        </div>
+        <div class="d-flex" style="padding-left:20px; padding-right:20px">
+            <img src="{% static 'identify/27.png' %}" alt="Bootstrap" width="200" height="auto">
+        </div>
+        <div class="d-flex" style="padding-left:20px;">
+            <img src="{% static 'identify/35.png' %}" alt="Bootstrap" width="200" height="auto">
+        </div>
+    </div>
+
+    <div class="d-flex flex-row" style="padding-top:50px">
+        <div class="d-flex" style="margin-right:20px; padding-left:20px">
+            <img src="{% static 'identify/network.png' %}" alt="Bootstrap" width="400" height="auto">
+        </div>
+        <div class="d-flex" style="padding-top:50px; padding-left:20px">
+            <bodytext>
+                The model was trained and changed various times to find the correct structure to most accurately capture
+                the features needed to classify ACL injuries. Ultimately it was determined that a model with six
+                convolutional layers, with pooling in-between them, and 3 fully connected layers was the most effective.
+                This model structure can be seen illustrated on the left.
+            </bodytext>
+        </div>
+    </div>
+
+    <div class="d-flex" style="padding-top:40px; padding-left:20px; margin-right:20px">
+        <bodytext>
+            The network was validated using 115 images from the same source as the training data and selected using
+            the same process. The model correctly identified 105 out of 115 test images for an accuracy of 91.3%. The
+            model training progression can be seen below as the training loss and validation decreases while the
+            accuracy increases. The ROC (Receiver Operating Characteristic) curve is used to evaluate the performance
+            of the model and it plots the True Positive Rate (TPR) against the False Positive Rate (FPR) at various
+            classification thresholds. The AUC-ROC (Area Under the ROC Curve) score is used to quantify the performance
+            of a binary classification model. A perfect classifier would have an AUC-ROC score of 1, while a random
+            classifier would have a score of 0.5. The AUC-ROC score measures the model's ability to distinguish between
+            positive and negative samples. This model has an AUC-ROC score of 0.9125 making it an excellent classifier.
+        </bodytext>
+    </div>
+
+    <div class="d-flex flex-row" style="padding-top:50px">
+        <div class="d-flex" style="padding-left:50px; padding-right:30px">
+            <img src="{% static 'identify/tloss.png' %}" alt="Bootstrap" width="350" height="auto">
+        </div>
+        <div class="d-flex" style="padding-left:30px; padding-right:30px">
+            <img src="{% static 'identify/lacc.png' %}" alt="Bootstrap" width="350" height="auto">
+        </div>
+        <div class="d-flex" style="padding-left:30px; padding-right:30px">
+            <img src="{% static 'identify/roc.png' %}" alt="Bootstrap" width="350" height="auto">
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
