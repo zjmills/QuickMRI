@@ -1,0 +1,10 @@
+# Django is needed to run Django
+Django
+
+#bootstrap
+#Bootstrap5
+django-bootstrap-v5
+
+importlib_metadata
+
+torch
