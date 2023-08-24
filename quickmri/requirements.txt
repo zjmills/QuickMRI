@@ -7,3 +7,4 @@ django-bootstrap-v5
 
 importlib_metadata
 
+torch==1.8.1+cpu
